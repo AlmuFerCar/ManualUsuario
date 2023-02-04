@@ -2,12 +2,8 @@ package com.almufc.manualusuario
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AlphaAnimation
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
-import android.widget.ImageView
-import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.almufc.manualusuario.databinding.ActivityMainBinding
@@ -34,34 +30,36 @@ class MainActivity : AppCompatActivity() {
         val chatFragment = Page3()
         val profileFragment = ScrollingPage4()
         val navview = findViewById<NavigationView>(R.id.nav_view)
+        val animLeftNav = AnimationUtils.loadAnimation(this, R.anim.move_left_to_right)
+        val slideout = AnimationUtils.loadAnimation(this, R.anim.slideout)
         setThatFragment(mapFragment)
         bottomNavView.setSelectedItemId(R.id.house)
+
+/*PONER UNA VARIABLE QUE INDIQUE SI LA ANIMACION SE ESTA MOSTRANDO O NO Y EN FUNCION DE ESO OCULTARLA O NO*/
 
         bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.house ->{
                     binding.navView.isVisible= false
-                    binding.navView.clearAnimation()
+                    slideout.interpolator = DecelerateInterpolator()
+                    navview.startAnimation(slideout)
                     setThatFragment(mapFragment)
                 }
                 R.id.likes ->{
                     binding.navView.isVisible= false
-                    binding.navView.clearAnimation()
+                    slideout.interpolator = DecelerateInterpolator()
+                    navview.startAnimation(slideout)
                     setThatFragment(favFragment)
                 }
                 R.id.chat ->{
                     binding.navView.isVisible= false
-                    val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout)
-                    fadeOut.interpolator = DecelerateInterpolator()
-                    navview.startAnimation(fadeOut)
-                    //binding.navView.clearAnimation()
+
+                    slideout.interpolator = DecelerateInterpolator()
+                    navview.startAnimation(slideout)
                     setThatFragment(chatFragment)
                 }
                 R.id.profile ->{
                     binding.navView.isVisible= true
-
-
-                    val animLeftNav = AnimationUtils.loadAnimation(this, R.anim.move_left_to_right)
                     animLeftNav.interpolator = DecelerateInterpolator()
                     navview.startAnimation(animLeftNav)
                 }
