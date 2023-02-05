@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         bottomNavView =binding.bottomNavigation
 
+        var isnavview= false
         val mapFragment = Page1()
         val favFragment = Page2()
         val chatFragment = Page3()
@@ -41,25 +42,37 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.house ->{
                     binding.navView.isVisible= false
-                    slideout.interpolator = DecelerateInterpolator()
-                    navview.startAnimation(slideout)
+                    if(isnavview)
+                    {
+                        slideout.interpolator = DecelerateInterpolator()
+                        navview.startAnimation(slideout)
+                        isnavview=false
+                    }
                     setThatFragment(mapFragment)
                 }
                 R.id.likes ->{
                     binding.navView.isVisible= false
-                    slideout.interpolator = DecelerateInterpolator()
-                    navview.startAnimation(slideout)
+                    if(isnavview)
+                    {
+                        slideout.interpolator = DecelerateInterpolator()
+                        navview.startAnimation(slideout)
+                        isnavview=false
+                    }
                     setThatFragment(favFragment)
                 }
                 R.id.chat ->{
                     binding.navView.isVisible= false
-
-                    slideout.interpolator = DecelerateInterpolator()
-                    navview.startAnimation(slideout)
+                    if(isnavview)
+                    {
+                        slideout.interpolator = DecelerateInterpolator()
+                        navview.startAnimation(slideout)
+                        isnavview=false
+                    }
                     setThatFragment(chatFragment)
                 }
                 R.id.profile ->{
                     binding.navView.isVisible= true
+                    isnavview=true
                     animLeftNav.interpolator = DecelerateInterpolator()
                     navview.startAnimation(animLeftNav)
                 }
