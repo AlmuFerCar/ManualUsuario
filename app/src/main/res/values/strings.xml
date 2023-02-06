@@ -21,6 +21,7 @@
     <string name="telefono">Telephone number</string>
     <string name="surname">Surname</string>
     <string name="name">Name</string>
+    <string name="logout">Logout</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
